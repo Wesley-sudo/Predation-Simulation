@@ -12,7 +12,7 @@
     <canvas id="canvas"></canvas>
     <script src="utilities.js"></script>
     <script src="quadtree.js"></script>
-    <script src="main.js"></script>
     <script src="creature.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>

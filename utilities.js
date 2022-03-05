@@ -27,15 +27,18 @@ class Vector {
     subtract(vector) {
         let x = this.x - vector.x;
         let y = this.y - vector.y;
-
         return new Vector(hyp(x, y), atann(x, y));
     }
     
     add(vector) {
         let x = this.x + vector.x;
         let y = this.y + vector.y;
-
         return new Vector(hyp(x, y), atann(x, y));
+    }
+
+    update() {
+        this.x = this.magnitude * Math.cos(this.angle);
+        this.y = this.magnitude * Math.sin(this.angle);
     }
 
     show(location) {
