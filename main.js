@@ -58,22 +58,22 @@ document.addEventListener('keypress', (event) => {
 let handleCreatures = function () {
     // Execution of functions for every creature that exists
     for (let creature of creaturesArray) {
-        if (frameLoop) {
-            creature.checkBorders();
-            creature.updatePosition();
-        }
-        qtree.insert(creature)
-        creature.draw();
-        // creature.showSightRange();
-        // creature.showBoundingBox();
+        qtree.insert(creature);
     }
     // Checks the neighbors of every creature
     for (let creature of creaturesArray) {
         if (frameLoop) {
             creature.detectInRange(qtree, creature);
+            creature.enableCohesion();
+            creature.enableAlignment();
+            creature.enableSeparation(creature);
+            creature.checkBorders();
+            creature.updatePosition();
         }
+        creature.draw();
+        creature.showSightRange();
+        // creature.showBoundingBox();
     }
-
 }
 
 let showDebuggerMouse = function (mouseArea) {
@@ -97,7 +97,7 @@ let animate = function () {
     let foundCreatures = qtree.query(mouseArea);
 
     if (logCreaturesFound && foundCreatures.length > 0) console.log(foundCreatures[0].seenCreatures);
-    qtree.display();
+    // qtree.display();
     qtree.clear();
     requestAnimationFrame(animate);
 }
